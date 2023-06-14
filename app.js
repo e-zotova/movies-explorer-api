@@ -32,4 +32,4 @@ app.use(router);
 app.use(errorLogger);
 app.use(handleErrorMiddleware);
 
-app.listen(PORT, () => console.log('Server is started.'));
+app.listen(PORT, () => {});
