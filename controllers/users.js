@@ -6,6 +6,16 @@ const NotFoundError = require('../errors/not-found-error');
 const ConflictError = require('../errors/conflict-error');
 const BadRequestError = require('../errors/bad-request-error');
 
+const {
+  validationError,
+  invalidDataUserMessage,
+  invalidIdUserMessage,
+  conflictError,
+  userConflictMessage,
+  notFoundError,
+  userNotFoundMessage,
+} = require('../utils/constants');
+
 const createUser = (req, res, next) => {
   const {
     email, password, name,
@@ -24,11 +34,11 @@ const createUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
-        return next(new BadRequestError('Invalid data when creating a user'));
+      if (err.name === validationError) {
+        return next(new BadRequestError(invalidDataUserMessage));
       }
-      if (err.code === 11000) {
-        return next(new ConflictError('User already exists'));
+      if (err.code === conflictError) {
+        return next(new ConflictError(userConflictMessage));
       }
       return next(err);
     });
@@ -52,8 +62,8 @@ const getCurrentUser = (req, res, next) => {
       res.send(user);
     })
     .catch((err) => {
-      if (err.name === 'DocumentNotFoundError') {
-        return next(new NotFoundError('User is not found'));
+      if (err.name === notFoundError) {
+        return next(new NotFoundError(userNotFoundMessage));
       }
       return next(err);
     });
@@ -71,11 +81,11 @@ const updateUserInfo = (req, res, next) => {
       res.send(user);
     })
     .catch((err) => {
-      if (err.name === 'ValidationError' || err.name === 'CastError') {
-        return next(new BadRequestError('Invalid user id'));
+      if (err.name === validationError) {
+        return next(new BadRequestError(invalidIdUserMessage));
       }
-      if (err.name === 'DocumentNotFoundError') {
-        return next(new NotFoundError('User is not found'));
+      if (err.name === notFoundError) {
+        return next(new NotFoundError(userNotFoundMessage));
       }
       return next(err);
     });
