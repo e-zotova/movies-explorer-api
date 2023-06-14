@@ -4,9 +4,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const router = require('./routes');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { requestLogger, errorLogger } = require('./utils/logger');
 const handleErrorMiddleware = require('./middlewares/handleErrorMiddleware');
-const { mongodb } = require('./utils/config');
+const { mongodb } = require('./config');
 const rateLimiter = require('./utils/ratelimiter');
 
 const { PORT = 3000 } = process.env;
