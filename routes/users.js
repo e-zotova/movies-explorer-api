@@ -1,5 +1,5 @@
 const userRouter = require('express').Router();
-const { validateProfileInfo } = require('../middlewares/celebrateValidation');
+const { validateProfileInfo } = require('../utils/celebrateValidation');
 
 const {
   getCurrentUser,

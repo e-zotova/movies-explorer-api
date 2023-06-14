@@ -2,7 +2,7 @@ const movieRouter = require('express').Router();
 const {
   validateCreateMovie,
   validateMovieById,
-} = require('../middlewares/celebrateValidation');
+} = require('../utils/celebrateValidation');
 
 const {
   getMovies,

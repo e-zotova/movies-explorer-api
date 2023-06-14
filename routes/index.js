@@ -4,7 +4,7 @@ const { login, createUser } = require('../controllers/users');
 const userRouter = require('./users');
 const movieRouter = require('./movies');
 const authMiddleware = require('../middlewares/auth');
-const { validateCreateUser, validateLoginUser } = require('../middlewares/celebrateValidation');
+const { validateCreateUser, validateLoginUser } = require('../utils/celebrateValidation');
 
 const NotFoundError = require('../errors/not-found-error');
 
