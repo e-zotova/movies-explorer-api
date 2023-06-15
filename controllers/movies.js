@@ -12,7 +12,7 @@ const {
 } = require('../utils/constants');
 
 const getMovies = (req, res, next) => {
-  Movie.find({})
+  Movie.find({ owner: req.user.id })
     .then((movies) => res.send(movies))
     .catch(next);
 };

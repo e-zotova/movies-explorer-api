@@ -81,6 +81,9 @@ const updateUserInfo = (req, res, next) => {
       res.send(user);
     })
     .catch((err) => {
+      if (err.code === conflictError) {
+        return next(new ConflictError(userConflictMessage));
+      }
       if (err.name === validationError) {
         return next(new BadRequestError(invalidIdUserMessage));
       }
