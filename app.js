@@ -6,15 +6,13 @@ const helmet = require('helmet');
 const router = require('./routes');
 const { requestLogger, errorLogger } = require('./utils/logger');
 const handleErrorMiddleware = require('./middlewares/handleErrorMiddleware');
-const { mongodb } = require('./config');
+const { MONGO_URL, PORT } = require('./config');
 const rateLimiter = require('./utils/ratelimiter');
-
-const { PORT = 3000 } = process.env;
 
 const app = express();
 app.use(cors());
 
-mongoose.connect(mongodb);
+mongoose.connect(MONGO_URL, {});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

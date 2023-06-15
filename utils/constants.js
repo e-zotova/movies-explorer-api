@@ -1,3 +1,5 @@
+const devsecret = 'secret-key';
+
 const validationError = 'ValidationError';
 const notFoundError = 'DocumentNotFoundError';
 const conflictError = 11000;
@@ -13,6 +15,7 @@ const deleteMovieForbiddenMessage = 'It is not allowed to delete other user\'s m
 const userConflictMessage = 'User already exists';
 
 module.exports = {
+  devsecret,
   validationError,
   invalidDataMovieMessage,
   invalidDataUserMessage,
