@@ -9,11 +9,11 @@ const BadRequestError = require('../errors/bad-request-error');
 const {
   validationError,
   invalidDataUserMessage,
-  invalidIdUserMessage,
   conflictError,
   userConflictMessage,
   notFoundError,
   userNotFoundMessage,
+  updateProfileErrorMessage,
 } = require('../utils/constants');
 
 const createUser = (req, res, next) => {
@@ -85,7 +85,7 @@ const updateUserInfo = (req, res, next) => {
         return next(new ConflictError(userConflictMessage));
       }
       if (err.name === validationError) {
-        return next(new BadRequestError(invalidIdUserMessage));
+        return next(new BadRequestError(updateProfileErrorMessage));
       }
       if (err.name === notFoundError) {
         return next(new NotFoundError(userNotFoundMessage));
