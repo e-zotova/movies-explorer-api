@@ -5,8 +5,8 @@ const urlRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9
 const validateCreateUser = celebrate(
   {
     body: Joi.object().keys({
-      email: Joi.string().required().email(),
-      password: Joi.string().required(),
+      email: Joi.string().required().email().min(2),
+      password: Joi.string().required().min(8).max(20),
       name: Joi.string().required().min(2).max(30),
     }),
   },
@@ -15,8 +15,8 @@ const validateCreateUser = celebrate(
 const validateLoginUser = celebrate(
   {
     body: Joi.object().keys({
-      email: Joi.string().required().email(),
-      password: Joi.string().required(),
+      email: Joi.string().required().email().min(2),
+      password: Joi.string().required().min(8).max(20),
     }),
   },
 );
@@ -24,7 +24,7 @@ const validateLoginUser = celebrate(
 const validateProfileInfo = celebrate(
   {
     body: Joi.object().keys({
-      email: Joi.string().required().email(),
+      email: Joi.string().required().email().min(2),
       name: Joi.string().required().min(2).max(30),
     }),
   },
